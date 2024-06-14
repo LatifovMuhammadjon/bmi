@@ -41,7 +41,7 @@ class ExpenseReportView(APIView):
         report = expenses.values('currency__code').annotate(
             total_amount=Sum('amount'))
 
-        # Valyuta kurslarini qo'shish
+
         today = date.today()
         for item in report:
             currency_code = item['currency__code']
