@@ -13,7 +13,8 @@ from rest_framework.permissions import AllowAny
 router = DefaultRouter()
 router.register(r'expenses', ExpenseViewSet, basename='expense')
 router.register(r'currencies', CurrencyViewSet, basename='currency')
-router.register(r'exchange-rates', ExchangeRateViewSet, basename='exchange-rate')
+router.register(r'exchange-rates', ExchangeRateViewSet,
+                basename='exchange-rate')
 
 schema_view = get_yasg_view(
     openapi.Info(
@@ -32,7 +33,10 @@ urlpatterns = [
     path('api/auth/', include('dj_rest_auth.urls')),
     path('api/auth/registration/', include('dj_rest_auth.registration.urls')),
     path('api/expense-report/', ExpenseReportView.as_view(), name='expense-report'),
-    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-    path('swagger.json', schema_view.without_ui(cache_timeout=0), name='schema-json'),
+    path('swagger/', schema_view.with_ui('swagger',
+         cache_timeout=0), name='schema-swagger-ui'),
+    path('redoc/', schema_view.with_ui('redoc',
+         cache_timeout=0), name='schema-redoc'),
+    path('swagger.json', schema_view.without_ui(
+        cache_timeout=0), name='schema-json'),
 ]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
